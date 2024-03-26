@@ -63,7 +63,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 373px;
+    max-width: 343;
     padding-top: 7px;
 }
 
@@ -98,7 +98,6 @@
     .profile__title{
         font-size: 22px;
         line-height: 27px;
-        letter-spacing: 0em;
         text-align: center;
         padding: 0;
     }
@@ -122,3 +121,32 @@
         margin: 4px 0 0 10px;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .profile {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+
+    .profile__title {
+        max-width: 400px;
+        font-size: 32px;
+
+    }
+  
+    .profile__description {
+
+    }
+
+    .profile__info {
+    }
+  
+    .profile__edit-button {
+      width: 21px;
+      height: 21px;
+    }
+ 
+  }
+  

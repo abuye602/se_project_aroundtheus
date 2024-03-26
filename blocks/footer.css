@@ -18,8 +18,24 @@
       margin-bottom: 36px;
     }
     .footer__text {
+      align-items: flex-start;
       max-width: 282px;
       line-height: 14px;
       font-size: 14px;
+    }
+  }
+
+  @media screen and (min-width: 800px) and (max-width: 1000px) {
+    .footer {
+      margin-top: 48px;
+      margin-bottom: 36px;
+    }
+
+    .footer__text {
+      max-width: 282px;
+      line-height: 14px;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
     }
   }
