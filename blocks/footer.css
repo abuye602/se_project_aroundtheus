@@ -1,6 +1,6 @@
 .footer {
-    margin-top: 67px;
-    margin-bottom: 60px;
+    box-sizing: border-box;
+    margin: 67px auto 60px;
     color: rgba(84, 84, 84, 1);
     font-weight: 400;
   }
@@ -8,34 +8,29 @@
   .footer__text {
     margin: 0;
     max-width: 318px;
-    line-height: 18px;
+    line-height: 21.78px;
     font-size: 14px;
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+
   }
   
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 930px) and (min-width: 621px) {
     .footer {
-      margin-top: 48px;
-      margin-bottom: 36px;
-    }
-    .footer__text {
-      align-items: flex-start;
-      max-width: 282px;
-      line-height: 14px;
-      font-size: 14px;
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
-
-  @media screen and (min-width: 800px) and (max-width: 1000px) {
+  
+  @media screen and (max-width: 620px) {
     .footer {
       margin-top: 48px;
       margin-bottom: 36px;
-    }
-
-    .footer__text {
       max-width: 282px;
-      line-height: 14px;
+    }
+  
+    .footer__copyright {
       font-size: 14px;
-      display: flex;
-      justify-content: center;
+      line-height: 16.94px;
     }
   }
