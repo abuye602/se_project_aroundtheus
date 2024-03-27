@@ -1,5 +1,5 @@
 .header {
-   border-bottom: 1px solid rgba(84, 84, 84, 1);
+   border-bottom: 1px solid rgba(84, 84, 84, .7);
    box-sizing: border-box;
    min-width: 320px;
    margin-top: 45px;

@@ -4,7 +4,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 Project Link: https://github.com/abuye602/se_project_aroundtheus
 
-Video Link: 
+Video Link: I'm holding off on the video until I made final corrections to my project.
 
 Pages Link: https://abuye602.github.io/se_project_aroundtheus/
 
