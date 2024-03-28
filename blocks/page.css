@@ -12,7 +12,7 @@
 
 .page__section {
     max-width: 880px;
-    width: 100%;
     position: relative;
     margin: 0 auto;
+    padding: 0 20px;
 }
