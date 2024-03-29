@@ -106,12 +106,7 @@
   
     .profile__title {
       font-size: 22px;
-      line-height: 26.63px;
-    }
-  
-    .profile__description {
-      font-size: 14px;
-      line-height: 17px;
+      line-height: 27px;
     }
   
     .profile__info {
@@ -121,7 +116,6 @@
       justify-content: center;
       grid-row-gap: 14px;
       max-width: 415px;
-
     }
   
     .profile__description {
@@ -145,4 +139,3 @@
       margin-right: 0;
     }
   }
-  
