@@ -104,11 +104,6 @@
       align-items: center;
     }
   
-    .profile__title {
-      font-size: 22px;
-      line-height: 27px;
-    }
-  
     .profile__info {
       display: flex;
       flex-wrap: wrap;
