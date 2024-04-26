@@ -35,13 +35,30 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/Group.svg) center no-repeat;
+  background: transparent url(../images/like-inactive.svg) center no-repeat;
   width: 21px;
   height: 18px;
   border: none;
 }
 
+.card__like-button_active {
+  background-image: url(../images/like-active.svg);
+}
+
 .card__like-button:hover {
   opacity: 0.5;
+  cursor: pointer;
+}
+
+.card__trash {
+  position: absolute;
+  top: 18px;
+  background-color: transparent;
+  padding: 0;
+  border-style: none;
+}
+
+.card__trash:hover {
+  opacity: 0.6;
   cursor: pointer;
 }
