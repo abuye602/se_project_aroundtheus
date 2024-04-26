@@ -9,6 +9,7 @@
   object-fit: cover;
   width: 282px;
   height: 282px;
+  cursor: pointer;
 }
 
 .card__description {
@@ -53,9 +54,10 @@
 .card__trash {
   position: absolute;
   top: 18px;
+  right: 30px;
   background-color: transparent;
-  padding: 0;
   border-style: none;
+  padding: 0;
 }
 
 .card__trash:hover {
