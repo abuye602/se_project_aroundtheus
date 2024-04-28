@@ -89,7 +89,6 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const imgName = document.querySelector("#img-name");
   const previewImage = document.querySelector(".modal__preview-img");
-
   const trashButton = cardElement.querySelector(".card__trash");
   trashButton.addEventListener("click", () => {
     cardElement.remove();

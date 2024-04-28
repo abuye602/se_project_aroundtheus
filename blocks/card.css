@@ -3,6 +3,7 @@
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .card__image {
@@ -54,7 +55,7 @@
 .card__trash {
   position: absolute;
   top: 18px;
-  right: 30px;
+  right: 15px;
   background-color: transparent;
   border-style: none;
   padding: 0;
