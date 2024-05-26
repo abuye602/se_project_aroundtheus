@@ -119,7 +119,7 @@ function renderCard(cardData, wrapper) {
 // Event listeners
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
-addCardModalCloseButton.addEventListener("sumbit", handleProfileEditSubmit);
+addCardModalCloseButton.addEventListener("submit", handleProfileEditSubmit);
 
 profileEditbutton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;

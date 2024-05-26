@@ -108,6 +108,18 @@
   margin-bottom: 0;
 }
 
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: rgb(255, 0, 0);
+  transition: opacity 0.3s;
+}
+
+.modal__input_type_error {
+  border-bottom: solid rgb(255, 0, 0);
+  border-width: 1px;
+}
+
 .modal__button {
   width: 100%;
   margin-top: 48px;
@@ -118,6 +130,16 @@
   font-size: 18px;
   border-radius: 2px;
   border: none;
+}
+
+.modal__button_disabled {
+  color: rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.modal__button_disabled {
+  color: rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 .modal__save {

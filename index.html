@@ -54,16 +54,18 @@
             type="text"
             class="modal__input modal__input_type_name"
             name="title"
-            placeholder="Name"
+            placeholder="Name" required minlength="2" maxlength="40"
             id="profile-title-input"
           />
+          <span class="modal__error" id="profile-input-name-error"></span>
           <input
             type="text"
             class="modal__input modal__input_type_description"
             name="description"
-            placeholder="Description"
+            placeholder="Description" required minlength="2" maxlength="200"
             id="profile-description-input"
           />
+          <span class="modal__error" id="profile-input-description-error"></span>
           <button class="form__button" type="submit">Save</button>
         </form>
       </div>
@@ -79,17 +81,20 @@
             type="text"
             class="modal__input modal__input_type_title"
             name="title"
-            placeholder="Title"
+            placeholder="Title" required minlength="1" maxlength="30"
             id="profile-title-input"
           />
+          <span class="modal__error" id="card-input-title-error"></span>
           <input
             type="text"
             class="modal__input modal__input_type_url"
             name="url"
-            placeholder="Image URL"
+            placeholder="Image URL" 
+            required
             id="profile-description-input"
           />
-          <button class="form__button" type="submit">Save</button>
+          <span class="modal__error" id="card-input-url-error"></span> 
+          <button class="form__button form__button_disabled" type="submit" disabled >Save</button>
         </form>
       </div>
     </div>
@@ -124,5 +129,6 @@
     </template>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
