@@ -22,12 +22,24 @@
   padding: 0;
   text-align: center;
   border-radius: 2px;
-  border: 0;
+  cursor: pointer;
+}
+
+.form__button_disabled {
+  background-color: #fff;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: default;
+  padding: 0;
+}
+
+.form__button_disabled:hover {
+  opacity: 1;
 }
 
 .form__button:hover {
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.8);
+  opacity: 50%;
 }
 
 @media screen and (max-width: 620px) {

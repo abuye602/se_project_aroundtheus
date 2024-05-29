@@ -140,3 +140,21 @@ addCardModalCloseButton.addEventListener("click", () =>
 );
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+function closeModalEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
+}
+
+document.addEventListener("keydown", closeModalEsc);
+
+function closeModalOverlayClick(evt) {
+  const openedModal = document.querySelector(".modal_opened");
+  if (evt.target === openedModal) {
+    closeModal(openedModal);
+  }
+}
+
+document.addEventListener("click", closeModalOverlayClick);

@@ -1,15 +1,15 @@
-function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+function showInputError(formEl, inputEl, { inputErrorClass, errorclass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = inputEl.validationMessage;
-  errorMessageEl.classList.add(errorClass);
+  errorMessageEl.classList.add(errorclass);
 }
 
-function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+function hideInputError(formEl, inputEl, { inputErrorClass, errorclass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
-  errorMessageEl.classList.remove(errorClass);
   errorMessageEl.textContent = "";
+  errorMessageEl.classList.remove(errorclass);
 }
 
 function checkInputValidity(formEl, inputEl, options) {
@@ -34,9 +34,9 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 }
 
 function setEventListeners(formEl, options) {
-  const { inputSelector } = options;
+  const { inputSelector, submitButtonSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(".modal__button");
+  const submitButton = formEl.querySelector(submitButtonSelector);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
@@ -59,28 +59,10 @@ function enableValidation(options) {
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
+  submitButtonSelector: ".form__button",
   inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
+  inputErrorClass: "modal__input-error",
+  errorclass: "modal__error",
 };
 
 enableValidation(config);
-
-function closeModalEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
-  }
-}
-
-document.addEventListener("keydown", closeModalEsc);
-
-function closeModalOverlayClick(evt) {
-  const openedModal = document.querySelector(".modal_opened");
-  if (evt.target === openedModal) {
-    closeModal(openedModal);
-  }
-}
-
-document.addEventListener("click", closeModalOverlayClick);
