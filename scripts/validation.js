@@ -59,8 +59,8 @@ function enableValidation(options) {
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input-error",
   errorclass: "modal__error",
 };

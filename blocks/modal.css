@@ -148,11 +148,36 @@
   font-size: 18px;
   border-radius: 2px;
   border: none;
+
+  background: rgba(0, 0, 0, 1);
+  color: #fff;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 48px;
+  padding: 0;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.modal__button:hover {
+  opacity: 50%;
 }
 
 .modal__button_disabled {
   color: rgba(0, 0, 0, 0.2);
   background-color: #fff;
+
+  background-color: #fff;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: default;
+  padding: 0;
+}
+
+.modal__button_disabled:hover {
+  opacity: 1;
 }
 
 .modal__save {
@@ -206,5 +231,12 @@
   .modal__save {
     font-size: 14px;
     line-height: 17px;
+  }
+
+  .modal__button {
+    font-size: 14px;
+    width: 238px;
+    height: 46px;
+    border-radius: 2px 0px 0px 0px;
   }
 }
