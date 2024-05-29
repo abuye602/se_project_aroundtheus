@@ -84,6 +84,8 @@ function handleAddCardSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
+  cardTitleInput.value = "";
+  cardUrlInput.value = "";
 }
 
 function getCardElement(cardData) {
@@ -163,3 +165,6 @@ editModalOverlay.addEventListener("click", closeModalOverlayClick);
 
 const addModalOverlay = document.querySelector("#add-card-modal");
 addModalOverlay.addEventListener("click", closeModalOverlayClick);
+
+const imagePreviewOverlay = document.querySelector("#img-preview-modal");
+imagePreviewOverlay.addEventListener("click", closeModalOverlayClick);
