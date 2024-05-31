@@ -157,11 +157,7 @@ function closeModalOverlayClick(evt) {
   }
 }
 
-const editModalOverlay = profileEditModal;
-editModalOverlay.addEventListener("click", closeModalOverlayClick);
-
-const addModalOverlay = addCardModal;
-addModalOverlay.addEventListener("click", closeModalOverlayClick);
-
-const imagePreviewOverlay = previewImageModal;
-imagePreviewOverlay.addEventListener("click", closeModalOverlayClick);
+// Overlay event listeners
+profileEditModal.addEventListener("click", closeModalOverlayClick);
+addCardModal.addEventListener("click", closeModalOverlayClick);
+previewImageModal.addEventListener("click", closeModalOverlayClick);
