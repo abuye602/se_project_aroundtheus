@@ -61,13 +61,11 @@ const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 // Functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.setAttribute("data-modal-opened", "true");
   document.addEventListener("keydown", closeModalEsc);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.removeAttribute("data-modal-opened");
   document.removeEventListener("keydown", closeModalEsc);
 }
 
@@ -124,7 +122,7 @@ function renderCard(cardData, wrapper) {
 // Event listeners
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
-addCardModalCloseButton.addEventListener("click", handleProfileEditSubmit);
+addCardModalCloseButton.removeEventListener("click", handleProfileEditSubmit);
 
 profileEditbutton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -154,17 +152,16 @@ function closeModalEsc(evt) {
 }
 
 function closeModalOverlayClick(evt) {
-  const openedModal = document.querySelector("[data-modal-opened='true']");
-  if (openedModal && evt.target === openedModal) {
-    closeModal(openedModal);
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
   }
 }
 
-const editModalOverlay = document.querySelector("#edit-modal");
+const editModalOverlay = profileEditModal;
 editModalOverlay.addEventListener("click", closeModalOverlayClick);
 
-const addModalOverlay = document.querySelector("#add-card-modal");
+const addModalOverlay = addCardModal;
 addModalOverlay.addEventListener("click", closeModalOverlayClick);
 
-const imagePreviewOverlay = document.querySelector("#img-preview-modal");
+const imagePreviewOverlay = previewImageModal;
 imagePreviewOverlay.addEventListener("click", closeModalOverlayClick);
