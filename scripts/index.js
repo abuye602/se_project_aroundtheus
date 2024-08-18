@@ -1,6 +1,19 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
+// Wrappers
+const profileEditModal = document.querySelector("#edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
+
+// Elements
+export const profileEditForm = profileEditModal.querySelector(".modal__form");
+export const addCardFormElement = addCardModal.querySelector(".modal__form");
+
+// The rest of your code remains the same
+
 const initialCards = [
   {
-    name: "Yosemite Vallye",
+    name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
   {
@@ -25,16 +38,20 @@ const initialCards = [
   },
 ];
 
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
-const profileEditModal = document.querySelector("#edit-modal");
-const addCardModal = document.querySelector("#add-card-modal");
-const profileEditForm = profileEditModal.querySelector(".modal__form");
-const addCardFormElement = addCardModal.querySelector(".modal__form");
 
 // Elements
 const profileEditbutton = document.querySelector("#profile-edit-button");
