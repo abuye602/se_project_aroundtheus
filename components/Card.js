@@ -1,91 +1,71 @@
-// export default class Card {
-//   constructor({ name, link }, cardSelector) {
-//     this._name = name;
-//     this._link = link;
-//     this._cardSelector = cardSelector;
-//   }
-
-//   _setEventListeners() {
-//     // ".card__like-button"
-//     this.cardElement
-//       .querySelector(".card__like-button")
-//       .addEventListner("click", () => {
-//         this._likeButton();
-//       });
-
-//     // ".card__trash"
-//     this._cardElement
-//       .querySelector(".card__trash")
-//       .addEventListner("click", () => {
-//         this._trashButton();
-//       });
-//   }
-
-//   _trashButton() {
-//     this.cardElement.remove();
-//     this.cardElement = null;
-//   }
-
-//   _likeButton() {
-//     this._cardElement
-//       .querySelector(".card__like-button")
-//       .classList.toggle("card__like-button_is-active");
-//   }
-
-//   getView() {
-//     this.cardElement = document
-//       .querySelector(this._cardSelector)
-//       .cloneNode(true);
-
-//     // get the card view
-//     // set event listeners
-//     this._setEventListeners();
-//     // return the card
-//   }
-// }
-
-// DONT USE JUST YET
-
 // Card.js
 export default class Card {
-  constructor({ name, link }, cardSelector, handlePreviewPicture) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
     this._cardSelector = cardSelector;
-    this._handlePreviewPicture = handlePreviewPicture;
+  }
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
+
+    return cardElement;
+  }
+
+  _handleDeleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
+
+  _handleLikeIcon() {
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
+  }
+
+  _handleOpenImagePopup() {
+    const imgName = document.querySelector("#img-name");
+    const previewImage = document.querySelector(".modal__preview-img");
+    const previewImageModal = document.querySelector("#img-preview-modal");
+
+    imgName.textContent = this._name;
+    previewImage.alt = this._name;
+    previewImage.src = this._link;
+
+    openModal(previewImageModal);
   }
 
   _setEventListeners() {
-    this._cardElement
+    this._element
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        // Handle like button click
+        this._handleLikeIcon();
       });
 
-    this._cardElement
+    this._element
       .querySelector(".card__trash")
       .addEventListener("click", () => {
-        this._cardElement.remove();
+        this._handleDeleteCard();
       });
 
-    this._cardElement
+    this._element
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handlePreviewPicture(this._link, this._name);
+        this._handleOpenImagePopup();
       });
   }
 
   getView() {
-    const cardTemplate = document.querySelector(this._cardSelector);
-    if (!cardTemplate)
-      throw new Error(`Template ${this._cardSelector} not found.`);
-
-    this._cardElement = cardTemplate.content.cloneNode(true);
-    this._cardElement.querySelector(".card__image").src = this._link;
-    this._cardElement.querySelector(".card__image").alt = this._name;
-    this._cardElement.querySelector(".card__title").textContent = this._name;
+    this._element = this._getTemplate();
+    this._element.querySelector(".card__title").textContent = this._name;
+    this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._name;
 
     this._setEventListeners();
-    return this._cardElement;
+
+    return this._element;
   }
 }

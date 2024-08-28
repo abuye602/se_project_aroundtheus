@@ -103,37 +103,10 @@ function handleAddCardSubmit(e) {
   cardUrlInput.value = "";
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const imgName = document.querySelector("#img-name");
-  const previewImage = document.querySelector(".modal__preview-img");
-  const trashButton = cardElement.querySelector(".card__trash");
-  trashButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
-
-  cardImageEl.addEventListener("click", () => {
-    openModal(previewImageModal);
-    imgName.textContent = cardData.name;
-    previewImage.alt = cardData.name;
-    previewImage.src = cardData.link;
-  });
-  return cardElement;
-}
-
 function renderCard(cardData, wrapper) {
-  wrapper.prepend(getCardElement(cardData));
+  const card = new Card(cardData, "#card-template");
+  const cardElement = card.getView();
+  wrapper.prepend(cardElement);
 }
 
 // Event listeners
