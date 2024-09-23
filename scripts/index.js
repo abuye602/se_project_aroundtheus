@@ -104,7 +104,7 @@ function handleAddCardSubmit(e) {
 }
 
 function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", openModal);
   const cardElement = card.getView();
   wrapper.prepend(cardElement);
 }

@@ -1,9 +1,9 @@
-// Card.js
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, openModal) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._openModal = openModal; // Store the passed openModal function
   }
 
   _getTemplate() {
@@ -31,11 +31,13 @@ export default class Card {
     const previewImage = document.querySelector(".modal__preview-img");
     const previewImageModal = document.querySelector("#img-preview-modal");
 
+    // Set image details
     imgName.textContent = this._name;
     previewImage.alt = this._name;
     previewImage.src = this._link;
 
-    openModal(previewImageModal);
+    // Open modal using the passed openModal function
+    this._openModal(previewImageModal);
   }
 
   _setEventListeners() {
