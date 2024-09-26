@@ -9,7 +9,28 @@ const addCardModal = document.querySelector("#add-card-modal");
 export const profileEditForm = profileEditModal.querySelector(".modal__form");
 export const addCardFormElement = addCardModal.querySelector(".modal__form");
 
-// The rest of your code remains the same
+// Form Validation Configuration
+const validationConfig = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+// Initialize form validators
+const profileFormValidator = new FormValidator(
+  validationConfig,
+  profileEditForm
+);
+const addCardFormValidator = new FormValidator(
+  validationConfig,
+  addCardFormElement
+);
+
+// Enable validation
+profileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 const initialCards = [
   {
@@ -38,18 +59,6 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-
-const card = new Card(cardData, "#card-template");
-card.getView();
-
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
 
@@ -60,10 +69,6 @@ const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const addNewCardButton = document.querySelector(".profile__add-button");
-
-// Image Preview
-const previewImageModal = document.querySelector("#img-preview-modal");
-const previewImageClose = document.querySelector("#img-preview-close-btn");
 
 // Form data
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -97,10 +102,15 @@ function handleAddCardSubmit(e) {
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
-  closeModal(addCardModal);
-  cardTitleInput.value = "";
-  cardUrlInput.value = "";
+
+  if (name && link) {
+    renderCard({ name, link }, cardsWrap);
+    closeModal(addCardModal);
+
+    // Reset form fields and disable submit button
+    addCardFormElement.reset(); // Reset form fields
+    addCardFormValidator.resetValidation(); // Reset validation (clear errors and deactivate button)
+  }
 }
 
 function renderCard(cardData, wrapper) {
@@ -112,26 +122,31 @@ function renderCard(cardData, wrapper) {
 // Event listeners
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
-addCardModalCloseButton.removeEventListener("click", handleProfileEditSubmit);
 
 profileEditbutton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
+  profileFormValidator.resetValidation(); // Reset validation state when the modal opens
 });
 profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
-previewImageClose.addEventListener("click", () =>
-  closeModal(previewImageModal)
-);
 
-// add new card
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+// Add new card button
+addNewCardButton.addEventListener("click", () => {
+  openModal(addCardModal);
+
+  // Reset form and deactivate submit button
+  addCardFormElement.reset(); // Reset form fields when modal opens
+  addCardFormValidator.resetValidation(); // Reset validation state when the modal opens
+});
+
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
+// Initial cards
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 function closeModalEsc(evt) {

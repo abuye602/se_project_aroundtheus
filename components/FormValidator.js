@@ -68,4 +68,12 @@ export default class FormValidator {
     this._submitButton.classList.add(this._settings.inactiveButtonClass);
     this._submitButton.disabled = true;
   }
+
+  // Rest form validation state (clear errors  and disable suybmit button if needed)
+  resetValidation() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+    this._toggleButtonState();
+  }
 }
