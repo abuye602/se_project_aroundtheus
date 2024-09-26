@@ -70,6 +70,10 @@ const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const previewImageModal = document.querySelector("#img-preview-modal");
+const previewImageElement = previewImageModal.querySelector(
+  ".modal__preview-img"
+); // Selects the image
+const previewImageCaption = previewImageModal.querySelector("#img-name");
 const previewImageCloseButton =
   previewImageModal.querySelector(".modal__close");
 
@@ -94,6 +98,18 @@ function closeModal(modal) {
   document.removeEventListener("keydown", closeModalEsc);
 }
 
+// New function to handle image click
+function handleImageClick(imageSrc, imageAlt) {
+  previewImageElement.src = imageSrc;
+  previewImageElement.alt = imageAlt;
+  previewImageCaption.textContent = imageAlt;
+  openModal(previewImageModal);
+}
+
+previewImageCloseButton.addEventListener("click", () => {
+  closeModal(previewImageModal);
+});
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -112,12 +128,12 @@ function handleAddCardSubmit(e) {
 
     // Reset form fields and disable submit button
     addCardFormElement.reset(); // Reset form fields
-    addCardFormValidator.resetValidation(); // Reset validation (clear errors and deactivate button)
+    addCardFormValidator.disableSubmitButton(); // Reset validation (clear errors and deactivate button)
   }
 }
 
 function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, "#card-template", openModal);
+  const card = new Card(cardData, "#card-template", handleImageClick); // Use handleImageClick here
   const cardElement = card.getView();
   wrapper.prepend(cardElement);
 }
@@ -143,10 +159,6 @@ previewImageCloseButton.addEventListener("click", () => {
 // Add new card button
 addNewCardButton.addEventListener("click", () => {
   openModal(addCardModal);
-
-  // Reset form and deactivate submit button
-  addCardFormElement.reset(); // Reset form fields when modal opens
-  addCardFormValidator.resetValidation(); // Reset validation state when the modal opens
 });
 
 addCardModalCloseButton.addEventListener("click", () =>
