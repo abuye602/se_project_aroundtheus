@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aound the U.S</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
 
   <body class="page">
@@ -13,14 +12,14 @@
       <header class="header page__section">
         <img
           class="header__logo"
-          src="./images/Vector_header.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S. Logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Avatar"
             class="profile__image"
           />
@@ -130,12 +129,12 @@
         </div>
         </div>
         <button class="card__trash" type="button">
-          <img src="./images/Trash.svg" alt="delete" />
+          <img
+          src="<%=require('./images/Trash.svg')%>"
+          alt="delete" />
         </button>
       </div>
       </li>
     </template>
-
-    <script src="./scripts/index.js" type="module" defer></script>
   </body>
 </html>

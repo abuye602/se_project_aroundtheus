@@ -1,5 +1,20 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import "../pages/index.css";
+
+const popupWithImage = new PopupWithImage({
+  popupSelector: "#img-preview-modal",
+});
+
+// Create an instance of UserInfo
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title", // Selector for the user's name
+  jobSelector: ".profile__description", // Selector for the user's job
+});
 
 // Wrappers
 const profileEditModal = document.querySelector("#edit-modal");
@@ -59,6 +74,33 @@ const initialCards = [
   },
 ];
 
+// Function to create card elements
+function createCard(data) {
+  const card = new Card(data, "#card-template", handleImageClick);
+  return card.getView(); // Return the card element
+}
+
+// Renderer function for the Section class
+const renderer = (item) => {
+  const cardElement = createCard(item); // Create the card element
+  section.addItem(cardElement); // Add it to the section
+};
+
+// Initialize Section AFTER defining initialCards
+const section = new Section({ items: initialCards, renderer }, ".cards__list");
+
+// Now, render the items
+section.renderItems();
+
+// Assuming `addCardModal` is the modal element for adding a new card
+document.addEventListener("DOMContentLoaded", () => {
+  const popupWithForms = new PopupWithForm( // Notice the corrected class name
+    {
+      popupSelector: "#add-card-modal", // Ensure the selector matches your HTML
+    },
+    handleAddCardSubmit
+  );
+});
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
 
@@ -100,10 +142,7 @@ function closeModal(modal) {
 
 // New function to handle image click
 function handleImageClick(imageSrc, imageAlt) {
-  previewImageElement.src = imageSrc;
-  previewImageElement.alt = imageAlt;
-  previewImageCaption.textContent = imageAlt;
-  openModal(previewImageModal);
+  popupWithImage.open(imageSrc, imageAlt);
 }
 
 previewImageCloseButton.addEventListener("click", () => {
