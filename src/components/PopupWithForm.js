@@ -1,38 +1,33 @@
-import Popup from "./Popup";
+import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor({ popupSelector }, handleFormSubmit) {
+  constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
+    this._handleFormSubmit = handleFormSubmit; // Assign the passed function here
     this._popupForm = this._popupElement.querySelector(".modal__form");
-    if (!this._popupForm) {
-      throw new Error(
-        `Popup form not found! Check if the form exists in the HTML for selector: ${popupSelector}`
-      );
-    }
-
-    this._handleFormSubmit = handleFormSubmit;
+    this._inputList = this._popupForm.querySelectorAll(".modal__input");
     this.setEventListeners();
   }
 
+  close() {
+    this._popupForm.reset();
+    super.close();
+  }
+
   _getInputValues() {
-    const inputs = this._popupForm.querySelectorAll("input");
-    const values = {};
-    inputs.forEach((input) => {
-      values[input.name] = input.value;
+    const formValues = {};
+    this._inputList.forEach((input) => {
+      formValues[input.name] = input.value; // Ensure the names 'title' and 'url' are correctly set in the form
     });
-    return values;
+    return formValues;
   }
 
   setEventListeners() {
-    // Call the parent class's setEventListeners method
-    super.setEventListeners();
-
-    // Add an event listener for the form submission
-    this._popupForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const inputData = this._getInputValues();
-      this._handleFormSubmit(inputData);
-      this.close();
+    this._popupForm.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues()); // Ensure this is a valid function
     });
+
+    super.setEventListeners();
   }
 }

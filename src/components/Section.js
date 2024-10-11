@@ -6,7 +6,7 @@ export default class Section {
   }
 
   addItem(element) {
-    this._container.append(element); // Add the new element to the container
+    this._container.prepend(element); // Add the new element to the container
   }
 
   renderItems() {

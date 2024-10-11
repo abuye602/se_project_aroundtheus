@@ -42,8 +42,7 @@ export default class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        // Call the passed handleImageClick function when the image is clicked
-        this._handleImageClick(this._link, this._name);
+        this._handleImageClick(this._name, this._link);
       });
   }
 
@@ -52,6 +51,8 @@ export default class Card {
     this._element.querySelector(".card__title").textContent = this._name;
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
+
+    console.log("Image Source: ", this._link);
 
     this._setEventListeners();
 
