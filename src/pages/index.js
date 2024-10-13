@@ -79,7 +79,6 @@ const popupWithAddCardForm = new PopupWithForm({
 
 // Event listener to open the add card modal
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-  addCardFormValidator.resetValidation(); // Reset validation errors but don’t disable the button
   popupWithAddCardForm.open();
 });
 
