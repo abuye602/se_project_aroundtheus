@@ -5,7 +5,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
-import { initialCards } from "../utils/constants.js"; // Import the initialCards array
+import { initialCards, validationConfig } from "../utils/constants.js"; // Import initialCards and validationConfig
 
 // Create an instance of PopupWithImage for handling image preview
 const popupWithImage = new PopupWithImage({
@@ -27,15 +27,6 @@ const addCardModal = document.querySelector("#add-card-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 
-// Form validation configurations
-const validationConfig = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
 // Initialize form validators
 const profileFormValidator = new FormValidator(
   validationConfig,
@@ -48,45 +39,47 @@ const addCardFormValidator = new FormValidator(
 profileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-// Create and render cards using Section class
+// Function to create a card
+function createCard(item) {
+  const card = new Card(item, "#card-template", (name, link) => {
+    popupWithImage.open(name, link); // Open image preview when clicked
+  });
+  return card.getView(); // Return the card element
+}
+
+// Initialize Section to render initial cards
 const section = new Section(
   {
-    items: initialCards, // Use the imported initialCards
+    items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#card-template", (name, link) => {
-        popupWithImage.open(name, link);
-      });
-      section.addItem(card.getView());
+      const cardElement = createCard(item); // Use createCard function
+      section.addItem(cardElement); // Add the card element to the section
     },
   },
   ".cards__list"
 );
-section.renderItems();
+section.renderItems(); // Render initial cards
 
 // PopupWithForm for adding a new card
 const popupWithAddCardForm = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (formData) => {
-    console.log("Add Card Form Data:", formData); // Add this to inspect the form data
-
-    const card = new Card(
-      {
-        name: formData.title, // Retrieve title correctly
-        link: formData.url, // Retrieve URL correctly
-      },
-      "#card-template",
-      (name, link) => {
-        popupWithImage.open(name, link); // Show preview when clicked
-      }
-    );
-    section.addItem(card.getView()); // Add the new card to the section
+    const cardElement = createCard({
+      name: formData.title, // Retrieve title from form
+      link: formData.url, // Retrieve URL from form
+    });
+    section.addItem(cardElement); // Add the new card to the section
     popupWithAddCardForm.close(); // Close the modal after submission
+
+    // After submitting, reset form fields and disable the submit button
+    addCardFormElement.reset(); // Reset the form fields
+    addCardFormValidator.disableSubmitButton(); // Disable submit button after form reset
   },
 });
 
 // Event listener to open the add card modal
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-  addCardFormValidator.resetValidation();
+  addCardFormValidator.resetValidation(); // Reset validation errors but don’t disable the button
   popupWithAddCardForm.open();
 });
 
@@ -94,12 +87,9 @@ document.querySelector(".profile__add-button").addEventListener("click", () => {
 const popupWithProfileEditForm = new PopupWithForm({
   popupSelector: "#edit-modal",
   handleFormSubmit: (formData) => {
-    console.log("Form Data from Edit Profile:", formData); // Log form data
-
-    // Ensure that the formData contains both name and job
     userInfo.setUserInfo({
-      name: formData.title, // Ensure these keys match the form's input names
-      job: formData.description, // If the form uses different names, adjust accordingly
+      name: formData.title, // Retrieve title (name) from the form
+      job: formData.description, // Retrieve description (job) from the form
     });
     popupWithProfileEditForm.close(); // Close the modal after submission
   },
@@ -110,6 +100,6 @@ document.querySelector("#profile-edit-button").addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   document.querySelector("#profile-title-input").value = userData.name;
   document.querySelector("#profile-description-input").value = userData.job;
-  profileFormValidator.resetValidation();
+  profileFormValidator.resetValidation(); // Reset validation errors
   popupWithProfileEditForm.open();
 });
