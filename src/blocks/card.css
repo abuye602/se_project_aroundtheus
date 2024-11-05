@@ -38,13 +38,31 @@
 
 .card__like-button {
   background: transparent url(../images/like-inactive.svg) center no-repeat;
+
   width: 21px;
   height: 18px;
   border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .card__like-button_active {
   background-image: url(../images/like-active.svg);
+  background-size: 21px 18px;
+  transform: scale(1.1);
+}
+
+/* Styling for the like count */
+.card__like-count {
+  font-size: 14px;
+  align-self: center;
+  color: #000;
+}
+
+.card__like-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .card__like-button:hover {

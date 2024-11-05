@@ -24,9 +24,18 @@ export default class FormValidator {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
-    inputElement.classList.remove(this._settings.inputErrorClass);
-    errorElement.textContent = "";
-    errorElement.classList.remove(this._settings.errorClass);
+
+    console.log("Input Element:", inputElement); // Debug log
+    console.log("Error Element:", errorElement); // Debug log
+
+    if (errorElement) {
+      // Check if errorElement exists
+      inputElement.classList.remove(this._settings.inputErrorClass);
+      errorElement.textContent = "";
+      errorElement.classList.remove(this._settings.errorClass);
+    } else {
+      console.warn(`Error element for ${inputElement.id} not found!`);
+    }
   }
 
   _checkInputValidity(inputElement) {
