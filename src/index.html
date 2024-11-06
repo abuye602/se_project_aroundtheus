@@ -17,17 +17,12 @@
         />
       </header>
       <main class="content">
-
         <section class="profile page__section">
-          <div class="profile__avatar-container">
-            <img
+          <img
             src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Avatar"
             class="profile__image"
           />
-          <button type="button" class="profile__image-edit-button" aria-label="Edit Profile Picture"></button>
-          </div>
-
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -48,29 +43,7 @@
       </footer>
     </div>
 
-    <!-- Change Profile Picture Modal -->
-<div class="modal" id="change-avatar-modal">
-  <div class="modal__container">
-    <button class="modal__close" type="button"></button>
-    <h2 class="modal__header">Change profile picture</h2>
-    <form class="modal__form" id="change-avatar-form">
-      <label class="modal__label">
-        <input
-          type="url"
-          class="modal__input"
-          id="avatar-input"
-          name="avatar"
-          placeholder="Avatar URL"
-          required
-        />
-        <span class="modal__error" id="avatar-input-error"></span>
-      </label>
-      <button class="modal__button" type="submit">Save</button>
-    </form>
-  </div>
-</div>
-
-    <!-- Edit card -->
+    <!-- Edit modal -->
     <div class="modal" id="edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
@@ -101,43 +74,37 @@
       </div>
     </div>
 
-<!-- Add card modal -->
-<div class="modal" id="add-card-modal">
-  <div class="modal__container">
-    <button class="modal__close" type="button"></button>
-    <h2 class="modal__header">New Place</h2>
-    <form class="modal__form" id="add-card-form">
-      <label class="modal__label">
-        <input
-          type="text"
-          class="modal__input modal__input_type_title"
-          name="title"
-          placeholder="Title"
-          required
-          minlength="1"
-          maxlength="30"
-          id="add-card-title-input"
-        />
-        <span class="modal__error" id="add-card-title-input-error"></span>
-      </label>
-      <label class="modal__label">
-        <input
-          type="url"
-          class="modal__input modal__input_type_url"
-          name="url"
-          placeholder="Image URL"
-          required
-          id="add-card-url-input"
-        />
-        <span class="modal__error" id="add-card-url-input-error"></span>
-      </label>
-      <button class="modal__button modal__button_disabled" type="submit" aria-placeholder="Create" disabled>
-        Create
-      </button>
-    </form>
-  </div>
-</div>
-
+    <!-- Add card modal -->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__header">New Place</h2>
+        <form class="modal__form" id="add-card-form">
+          <label class="modal__label">
+          <input
+            type="text"
+            class="modal__input modal__input_type_title"
+            name="title"
+            placeholder="Title" required minlength="1" maxlength="30"
+            id="add-card-title-input"
+          />
+          </label>
+         <label class="modal__label">
+          <span class="modal__error" id="add-card-title-input-error"></span>
+          <input
+            type="url"
+            class="modal__input modal__input_type_url"
+            name="url"
+            placeholder="Image URL" 
+            required
+            id="add-card-url-input"
+          />
+          <span class="modal__error" id="add-card-url-input-error"></span> 
+          <button class="modal__button modal__button_disabled" type="submit" disabled >Save</button>
+        </label>
+        </form>
+      </div>
+    </div>
 
     <!-- Image Preview Modal -->
     <div class="modal" id="img-preview-modal">
@@ -158,10 +125,7 @@
         <img class="card__image" src="" alt="" />
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <div class="card__like-container">
           <button class="card__like-button" type="button"></button>
-          <span class="card__like-count">0</span>
-        </div>
         </div>
         </div>
         <button class="card__trash" type="button">
