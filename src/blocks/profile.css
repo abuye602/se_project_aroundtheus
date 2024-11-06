@@ -68,11 +68,6 @@
   max-width: 415px;
 }
 
-.profile__avatar-container {
-  position: relative;
-  display: inline-block;
-}
-
 .profile__image {
   width: 120px;
   height: 120px;
@@ -80,35 +75,6 @@
   object-fit: cover;
   background-position: center;
   margin-right: 30px;
-  transition: opacity 0.2s;
-}
-
-.profile__image-edit-button {
-  position: absolute;
-  bottom: 51px;
-  right: 80px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  background-image: url(../images/edit_profile.png);
-  background-size: 24px 24px;
-  width: 24px;
-  height: 24px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.profile__avatar-container:hover .profile__image {
-  opacity: 0.3;
-}
-
-.profile__avatar-container:hover .profile__image-edit-button {
-  opacity: 1;
-}
-
-.button_disabled {
-  background-color: #ccc; /* Adjust this color to the shade of gray you prefer */
-  cursor: not-allowed;
 }
 
 @media screen and (max-width: 770px) {
@@ -164,10 +130,5 @@
 
   .profile__image {
     margin-right: 0;
-  }
-
-  .profile__image-edit-button {
-    bottom: 51px;
-    right: 50px;
   }
 }
